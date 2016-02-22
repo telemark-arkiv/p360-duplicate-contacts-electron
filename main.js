@@ -1,12 +1,23 @@
 'use strict';
 
+var fs = require('fs')
+var ipc = require('electron').ipcMain
+var opn = require('opn')
 var settings = require('./settings.json')
-
 //Setups env
 process.env.P360_DUPLICATE_CONTACTS_USER = settings.P360_DUPLICATE_CONTACTS_USER
 process.env.P360_DUPLICATE_CONTACTS_PASSWORD = settings.P360_DUPLICATE_CONTACTS_PASSWORD
 process.env.P360_DUPLICATE_CONTACTS_SERVER = settings.P360_DUPLICATE_CONTACTS_SERVER
 process.env.P360_DUPLICATE_CONTACTS_DATABASE = settings.P360_DUPLICATE_CONTACTS_DATABASE
+
+var studentsFilename = __dirname + '/files/elevmappe.txt'
+var contactsFilename = __dirname + '/files/kontakt.txt'
+var getDuplicatesFromDb = require('p360-duplicate-contacts')
+
+var filenames = {
+  kontakt: contactsFilename,
+  elevmappe: studentsFilename
+}
 
 const electron = require('electron');
 // Module to control application life.
@@ -21,7 +32,7 @@ var mainWindow;
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 420,
+    width: 320,
     height: 120,
     frame: false
   });
@@ -57,3 +68,27 @@ app.on('activate', function () {
     createWindow();
   }
 });
+
+// Close
+ipc.on('find-duplicates', function (event, arg) {
+  getDuplicatesFromDb(arg, function (error, data) {
+    if (error) {
+      console.log(error)
+    } else {
+      var list = []
+
+      data.forEach(function (item) {
+        list.push(item.id)
+      })
+
+      fs.writeFileSync(filenames[arg], list.join('\r\n'))
+
+      return opn(filenames[arg])
+    }
+  })
+})
+
+// Close
+ipc.on('close-main-window', function () {
+  app.quit();
+})
