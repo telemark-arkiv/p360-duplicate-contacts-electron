@@ -1,6 +1,6 @@
 'use strict';
 
-var settings = require('./settings/settings.json')
+var settings = require('./settings.json')
 
 //Setups env
 process.env.P360_DUPLICATE_CONTACTS_USER = settings.P360_DUPLICATE_CONTACTS_USER
@@ -21,8 +21,8 @@ var mainWindow;
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 320,
-    height: 130,
+    width: 420,
+    height: 120,
     frame: false
   });
 

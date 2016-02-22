@@ -1,16 +1,17 @@
 'use strict'
 
+var remote = require('remote')
 var fs = require('fs')
 var opn = require('opn')
 var getDuplicatesFromDb = require('p360-duplicate-contacts')
 
 function openSettings () {
-  opn('settings/settings.json')
+  opn(__dirname + '/settings.json')
 }
 
 function getDuplicates (type) {
-  var settings = require('./settings/settings.json')
-  var filename = 'files/' + type + '.txt'
+  var settings = require(__dirname + '/settings.json')
+  var filename = type + '.txt'
 
   //Setups env
   process.env.P360_DUPLICATE_CONTACTS_USER = settings.P360_DUPLICATE_CONTACTS_USER
@@ -35,11 +36,11 @@ function getDuplicates (type) {
   })
 }
 
-
 function init () {
   var contactBtn = document.getElementById('contactButton')
   var folderBtn = document.getElementById('folderButton')
   var settingsBtn = document.getElementById('settingsButton')
+  var offBtn = document.getElementById('offButton')
 
   contactBtn.addEventListener('click', function (e) {
     getDuplicates('kontakt')
@@ -53,7 +54,10 @@ function init () {
     openSettings()
   })
 
-
+  offBtn.addEventListener('click', function (e) {
+    var window = remote.getCurrentWindow()
+    window.close()
+  })
 }
 
 init()

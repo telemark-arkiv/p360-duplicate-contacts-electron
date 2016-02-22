@@ -1,15 +1,16 @@
 {
   "name": "p360-duplicate-contacts-electron",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "Find duplicates in p360",
   "main": "main.js",
   "scripts": {
     "start": "electron main.js",
-    "setup": "npm install && node setup.js"
+    "setup": "npm install && node setup.js",
+    "ship": "electron-packager ./ p360Duplicates --all --out ~/Desktop/p360Duplicates --version 0.36.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/atom/electron-quick-start.git"
+    "url": "git+https://github.com/telemark/p360-duplicate-contacts-electron.git"
   },
   "keywords": [
     "Electron",
@@ -20,10 +21,11 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "bugs": {
-    "url": "https://github.com/atom/electron-quick-start/issues"
+    "url": "https://github.com/telemark/p360-duplicate-contacts-electron/issues"
   },
-  "homepage": "https://github.com/atom/electron-quick-start#readme",
+  "homepage": "https://github.com/telemark/p360-duplicate-contacts-electron",
   "devDependencies": {
+    "electron-packager": "^5.2.1",
     "electron-prebuilt": "^0.36.0"
   },
   "dependencies": {
