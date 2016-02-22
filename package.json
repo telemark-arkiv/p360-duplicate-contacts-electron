@@ -27,6 +27,7 @@
     "electron-prebuilt": "^0.36.0"
   },
   "dependencies": {
-    "opn": "^4.0.0"
+    "opn": "^4.0.0",
+    "p360-duplicate-contacts": "^2.0.0"
   }
 }

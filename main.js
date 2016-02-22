@@ -1,5 +1,13 @@
 'use strict';
 
+var settings = require('./settings/settings.json')
+
+//Setups env
+process.env.P360_DUPLICATE_CONTACTS_USER = settings.P360_DUPLICATE_CONTACTS_USER
+process.env.P360_DUPLICATE_CONTACTS_PASSWORD = settings.P360_DUPLICATE_CONTACTS_PASSWORD
+process.env.P360_DUPLICATE_CONTACTS_SERVER = settings.P360_DUPLICATE_CONTACTS_SERVER
+process.env.P360_DUPLICATE_CONTACTS_DATABASE = settings.P360_DUPLICATE_CONTACTS_DATABASE
+
 const electron = require('electron');
 // Module to control application life.
 const app = electron.app;
