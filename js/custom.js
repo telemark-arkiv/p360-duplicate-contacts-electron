@@ -11,7 +11,7 @@ function openSettings () {
 
 function getDuplicates (type) {
   var settings = require(__dirname + '/settings.json')
-  var filename = type + '.txt'
+  var filename = __dirname + '/files/' + type + '.txt'
 
   //Setups env
   process.env.P360_DUPLICATE_CONTACTS_USER = settings.P360_DUPLICATE_CONTACTS_USER
