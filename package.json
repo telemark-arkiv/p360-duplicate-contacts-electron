@@ -30,6 +30,6 @@
   },
   "dependencies": {
     "opn": "^4.0.0",
-    "p360-duplicate-contacts": "^2.0.0"
+    "p360-duplicate-contacts": "^2.0.1"
   }
 }
